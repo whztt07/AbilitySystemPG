@@ -1,29 +1,33 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
+
+#include "AbilitySystemInterface.h"
+#include "AbilitySystemComponent.h"
+#include "Abilities/GameplayAbility.h"
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "CharacterBase.generated.h"
 
+
+
 UCLASS()
-class ABILITYSYSTEMPG_API ACharacterBase : public ACharacter
+class ABILITYSYSTEMPG_API ACharacterBase : public ACharacter, public IAbilitySystemInterface
 {
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this character's properties
 	ACharacterBase();
-
-protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
-public:	
-	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
-	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const;
+
+	UFUNCTION(BlueprintCallable, Category = "CharacterBase")
+	void AquireAbility(TSubclassOf<UGameplayAbility> AbilityToAquire);
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "CharacterBase")
+	UAbilitySystemComponent* AbilitySystemComp;
+
 
 };
