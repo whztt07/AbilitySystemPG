@@ -1,12 +1,13 @@
 
 #include "CharacterBase.h"
 
+#include "AttributeSetBase.h"
+
 ACharacterBase::ACharacterBase(){
 	PrimaryActorTick.bCanEverTick = true;
 
 	AbilitySystemComp = CreateDefaultSubobject<UAbilitySystemComponent>("AbilitySystemComp");
-
-
+	AttributeSetBaseComp = CreateDefaultSubobject<UAttributeSetBase>("AttributeSetBaseComp");
 }
 
 void ACharacterBase::BeginPlay(){

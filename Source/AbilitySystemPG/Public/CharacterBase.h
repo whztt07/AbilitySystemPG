@@ -8,7 +8,7 @@
 #include "GameFramework/Character.h"
 #include "CharacterBase.generated.h"
 
-
+class UAttributeSetBase;
 
 UCLASS()
 class ABILITYSYSTEMPG_API ACharacterBase : public ACharacter, public IAbilitySystemInterface
@@ -29,5 +29,8 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "CharacterBase")
 	UAbilitySystemComponent* AbilitySystemComp;
 
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "CharacterBase")
+	UAttributeSetBase* AttributeSetBaseComp;
 
 };
