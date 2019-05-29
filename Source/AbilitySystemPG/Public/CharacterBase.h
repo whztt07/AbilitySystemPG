@@ -11,8 +11,8 @@
 class UAttributeSetBase;
 
 UCLASS()
-class ABILITYSYSTEMPG_API ACharacterBase : public ACharacter, public IAbilitySystemInterface
-{
+class ABILITYSYSTEMPG_API ACharacterBase : public ACharacter, public IAbilitySystemInterface{
+
 	GENERATED_BODY()
 
 public:
@@ -32,5 +32,21 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "CharacterBase")
 	UAttributeSetBase* AttributeSetBaseComp;
+
+	UFUNCTION()
+	void OnHealthChanged(float Health, float MaxHealth);
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "CharacterBase", meta = (DisplayName = "OnHealthChanged"))
+	void BP_OnHealthChanged(float Health, float MaxHealth);
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "CharacterBase", meta = (DisplayName = "Die"))
+	void BP_Die();
+
+protected:
+
+
+	bool bIsDead{false};
+
+
 
 };
